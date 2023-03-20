@@ -29,7 +29,6 @@ class AuthService {
       accessToken: gAuth.accessToken,
       idToken: gAuth.idToken,
     );
-
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
   // 3. signOut()
