@@ -21,6 +21,7 @@ class _myrefPageState extends State<myrefPage> {
   var now = DateFormat('yyyy / MM').format(DateTime.now());
 
   List<String> _frozenfood = ['양파', '마늘', '대파', '피망'];
+  List<String> _meat = ['돼지고기', '소고기', '양고기'];
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,7 @@ class _myrefPageState extends State<myrefPage> {
                         )),
                   ],
                 )),
-            myCategoty(frozenfood: _frozenfood),
+            myCategoty(frozenfood: _frozenfood)
           ],
         ),
         drawer: mydrawer(accountName: accountName, accountEmail: accountEmail),
