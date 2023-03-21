@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_mciet/screens/addinfo.dart';
 import 'dart:io';
 
 class ViewPicture extends StatelessWidget {
@@ -25,13 +26,21 @@ class ViewPicture extends StatelessWidget {
               const SizedBox(height: 24),
               ElevatedButton.icon(
                 onPressed: () {
-
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddInfo()));
                 },
                 icon: Icon(Icons.save_alt),
-                label: Text('Save'),
+                label: Text(
+                  'SAVE',
+                  style: TextStyle(
+                      fontSize: 15, letterSpacing: 2, color: Colors.white),
+                ),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff3b6fa5)),
-              )
+                    backgroundColor: Color(0xff3b6fa5),
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
             ]),
       ),
     );
