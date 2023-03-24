@@ -106,7 +106,7 @@ class _myrefPageState extends State<myrefPage> {
                           )),
                     ],
                   )),
-              CategoryWithAddBtn(title: "MEAT"),
+              CategoryWithAddBtn(title: "MEAT", c_color: 0xff7bbff6),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -114,28 +114,24 @@ class _myrefPageState extends State<myrefPage> {
                     MyIngredient(
                       ingredient: "Pork",
                       expirationdate: "2023-04-02",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Beef",
                       expirationdate: "2023-03-29",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Lamb",
                       expirationdate: "2023-04-01",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Chicken meat",
                       expirationdate: "2023-04-03",
-                      press: () {},
                     ),
                   ],
                 ),
               ),
               mydivider(),
-              CategoryWithAddBtn(title: "FROZEN FOOD"),
+              CategoryWithAddBtn(title: "FROZEN FOOD", c_color: 0xff83aff0),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -143,28 +139,24 @@ class _myrefPageState extends State<myrefPage> {
                     MyIngredient(
                       ingredient: "Pork",
                       expirationdate: "2023-04-02",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Beef",
                       expirationdate: "2023-03-29",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Lamb",
                       expirationdate: "2023-04-01",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Chicken meat",
                       expirationdate: "2023-04-03",
-                      press: () {},
                     ),
                   ],
                 ),
               ),
               mydivider(),
-              CategoryWithAddBtn(title: "SAUCE"),
+              CategoryWithAddBtn(title: "SAUCE", c_color: 0xff4779c4),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -172,28 +164,24 @@ class _myrefPageState extends State<myrefPage> {
                     MyIngredient(
                       ingredient: "Pork",
                       expirationdate: "2023-04-02",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Beef",
                       expirationdate: "2023-03-29",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Lamb",
                       expirationdate: "2023-04-01",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Chicken meat",
                       expirationdate: "2023-04-03",
-                      press: () {},
                     ),
                   ],
                 ),
               ),
               mydivider(),
-              CategoryWithAddBtn(title: "VEGETABLE & FRUITS"),
+              CategoryWithAddBtn(title: "VEGETABLE & FRUITS", c_color: 0xff3c649f),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -201,28 +189,24 @@ class _myrefPageState extends State<myrefPage> {
                     MyIngredient(
                       ingredient: "Pork",
                       expirationdate: "2023-04-02",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Beef",
                       expirationdate: "2023-03-29",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Lamb",
                       expirationdate: "2023-04-01",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Chicken meat",
                       expirationdate: "2023-04-03",
-                      press: () {},
                     ),
                   ],
                 ),
               ),
               mydivider(),
-              CategoryWithAddBtn(title: "BEVERAGE"),
+              CategoryWithAddBtn(title: "BEVERAGE", c_color: 0xff2c456b),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -230,28 +214,24 @@ class _myrefPageState extends State<myrefPage> {
                     MyIngredient(
                       ingredient: "Pork",
                       expirationdate: "2023-04-02",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Beef",
                       expirationdate: "2023-03-29",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Lamb",
                       expirationdate: "2023-04-01",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Chicken meat",
                       expirationdate: "2023-04-03",
-                      press: () {},
                     ),
                   ],
                 ),
               ),
               mydivider(),
-              CategoryWithAddBtn(title: "ETC"),
+              CategoryWithAddBtn(title: "ETC", c_color: 0xff1b2d48),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -259,22 +239,18 @@ class _myrefPageState extends State<myrefPage> {
                     MyIngredient(
                       ingredient: "Pork",
                       expirationdate: "2023-04-02",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Beef",
                       expirationdate: "2023-03-29",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Lamb",
                       expirationdate: "2023-04-01",
-                      press: () {},
                     ),
                     MyIngredient(
                       ingredient: "Chicken meat",
                       expirationdate: "2023-04-03",
-                      press: () {},
                     ),
                   ],
                 ),

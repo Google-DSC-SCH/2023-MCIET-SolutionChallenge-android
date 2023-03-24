@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'memo.dart';
-import 'reciepe.dart';
+import 'checkexpidate.dart';
 import 'myref.dart';
 
 class homePage extends StatefulWidget {
@@ -22,7 +22,7 @@ class _homePageState extends State<homePage> {
         body: IndexedStack(
           index: _selectedIndex,
           children: [ // navigator 페이지
-            reciepePage(),
+            CheckPage(),
             myrefPage(),
             memoPage(),
           ],

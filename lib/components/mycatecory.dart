@@ -1,26 +1,27 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:solution_challenge_mciet/screens/additem.dart';
 
 class MyIngredient extends StatelessWidget {
   const MyIngredient({
-    super.key, required this.ingredient, required this.expirationdate, required this.press,
+    super.key, required this.ingredient, required this.expirationdate,
   });
 
   final String ingredient;
   final String expirationdate;
-  final Function press;
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.4,
+      width: size.width * 0.36,
       child: Column(
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              press;
+              Get.toNamed('/detail');
             },
             child: Container(
               padding: EdgeInsets.all(20),
@@ -30,7 +31,7 @@ class MyIngredient extends StatelessWidget {
                   bottom: 10 * 2.5
               ),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                   color: Color(0xff92b7c7),
                   boxShadow: [
                     BoxShadow(
@@ -74,10 +75,11 @@ class MyIngredient extends StatelessWidget {
 
 class CategoryWithAddBtn extends StatelessWidget {
   const CategoryWithAddBtn({
-    super.key, required this.title,
+    super.key, required this.title, required this.c_color,
   });
 
   final String title;
+  final int c_color;
 
 
   @override
@@ -86,7 +88,7 @@ class CategoryWithAddBtn extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: [
-          TitleWithCategory(text: title),
+          TitleWithCategory(text: title, c_color: c_color),
           Spacer(),
           ElevatedButton.icon(
             onPressed: () async {
@@ -94,7 +96,7 @@ class CategoryWithAddBtn extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => AddItem(cameras: value))));
             },
             style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff3b6fa5),
+                backgroundColor: Color(c_color),
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
             ),
@@ -111,9 +113,11 @@ class TitleWithCategory extends StatelessWidget {
   const TitleWithCategory({
     super.key,
     required this.text,
+    required this.c_color,
   });
 
   final String text;
+  final int c_color;
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +138,7 @@ class TitleWithCategory extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 7,
-                color: Color(0xff3b6fa5).withOpacity(0.3),
+                color: Color(c_color).withOpacity(0.3),
               ))
         ],
       ),

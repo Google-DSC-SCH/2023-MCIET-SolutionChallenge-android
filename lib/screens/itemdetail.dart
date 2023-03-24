@@ -1,17 +1,17 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:solution_challenge_mciet/screens/home.dart';
-import 'package:solution_challenge_mciet/screens/myref.dart';
 
-class AddInfo extends StatefulWidget {
-  const AddInfo({Key? key}) : super(key: key);
+class ItemDetails extends StatefulWidget {
+  const ItemDetails({Key? key}) : super(key: key);
 
   @override
-  State<AddInfo> createState() => _AddInfoState();
+  State<ItemDetails> createState() => _ItemDetailsState();
 }
 
-class _AddInfoState extends State<AddInfo> {
+class _ItemDetailsState extends State<ItemDetails> {
+
   TextEditingController _expirationdate = TextEditingController();
   TextEditingController _opendate = TextEditingController();
 
@@ -25,7 +25,6 @@ class _AddInfoState extends State<AddInfo> {
   ];
 
   String? selectedcategory = 'FROZEN FOOD';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +32,17 @@ class _AddInfoState extends State<AddInfo> {
         title: Text('M C I E T'),
         centerTitle: true,
         backgroundColor: Color(0xff3b6fa5),
+        actions: [
+          PopupMenuButton<Text>(itemBuilder: (context) {
+            return [PopupMenuItem(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Delete')
+            )
+            ];
+          })
+        ],
       ),
       body: Container(
         padding: EdgeInsets.only(left: 15, top: 40, right: 15),
@@ -144,7 +154,7 @@ class _AddInfoState extends State<AddInfo> {
                         children: [
                           OutlinedButton(
                             onPressed: () {
-                              Get.offAll(() => homePage());
+                              Navigator.pop(context);
                             },
                             child: Text(
                               'CANCEL',

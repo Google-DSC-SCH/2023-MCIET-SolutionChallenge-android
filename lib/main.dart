@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:solution_challenge_mciet/screens/home.dart';
+import 'package:solution_challenge_mciet/screens/itemdetail.dart';
 import '';
 import 'package:solution_challenge_mciet/screens/additem.dart';
 import 'package:solution_challenge_mciet/screens/myref.dart';
@@ -31,6 +32,10 @@ class Mciet extends StatelessWidget {
         GetPage(
             name: '/home',
             page: () => homePage()
+        ),
+        GetPage(
+            name: '/detail',
+            page: () => ItemDetails()
         ),
       ],
     );
