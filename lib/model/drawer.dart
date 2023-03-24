@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_mciet/components/myaccountinfo.dart';
 import 'package:solution_challenge_mciet/services/auth_service.dart';
+import 'package:get/get.dart';
 
 class mydrawer extends StatelessWidget {
   const mydrawer({
@@ -24,7 +26,7 @@ class mydrawer extends StatelessWidget {
               accountEmail: Text(accountEmail), // 유저이메일
               currentAccountPicture: CircleAvatar(
                   backgroundImage:
-                  AssetImage('lib/images/mciet_logo_1.png'),
+                  AssetImage('lib/images/ciety.png'),
                   child: ClipOval()),
             ),
             ListTile(
@@ -34,7 +36,7 @@ class mydrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {
-                // 페이지 이동
+
               },
             ),
             ListTile(
@@ -44,7 +46,11 @@ class mydrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {
-                // 페이지 이동
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return myAccountInfo(accountName: accountName, accountEmail: accountEmail);
+                    });
               },
             ),
             Divider(
@@ -68,3 +74,4 @@ class mydrawer extends StatelessWidget {
     );
   }
 }
+

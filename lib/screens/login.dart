@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 // 앱 로고
                 SizedBox(
-                  child: Image.asset('lib/images/mciet_logo_1.png'),
+                  child: Image.asset('lib/images/mciet_logo.png'),
                   height: 200,
                   width: 200,
                 ),

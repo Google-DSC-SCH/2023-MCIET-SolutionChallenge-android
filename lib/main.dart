@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:solution_challenge_mciet/screens/home.dart';
+import '';
+import 'package:solution_challenge_mciet/screens/additem.dart';
 import 'package:solution_challenge_mciet/screens/myref.dart';
 import 'package:solution_challenge_mciet/services/auth_service.dart';
 import 'package:get/get.dart';
@@ -23,8 +25,12 @@ class Mciet extends StatelessWidget {
       home: AuthService().handleAuthState(),
       getPages: [
         GetPage(
-          name: '/myref',
-          page: () => myrefPage()
+            name: '/myref',
+            page: () => myrefPage()
+        ),
+        GetPage(
+            name: '/home',
+            page: () => homePage()
         ),
       ],
     );

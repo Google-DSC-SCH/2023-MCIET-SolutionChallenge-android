@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:solution_challenge_mciet/screens/home.dart';
 import 'package:solution_challenge_mciet/screens/myref.dart';
 
 class AddInfo extends StatefulWidget {
@@ -160,7 +161,7 @@ class _AddInfoState extends State<AddInfo> {
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              Get.offAll(() => myrefPage());
+                              Get.offAll(() => homePage());
                             },
                             child: Text(
                               "SAVE",
