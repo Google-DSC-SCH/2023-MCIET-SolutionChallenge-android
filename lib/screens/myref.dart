@@ -9,8 +9,6 @@ import 'package:solution_challenge_mciet/components/mycatecory.dart';
 import 'package:solution_challenge_mciet/screens/additem.dart';
 import 'package:camera/camera.dart';
 
-import '../components/my_category.dart';
-
 class myrefPage extends StatefulWidget {
   const myrefPage({Key? key}) : super(key: key);
 
@@ -23,9 +21,6 @@ class _myrefPageState extends State<myrefPage> {
   final String accountEmail = FirebaseAuth.instance.currentUser!.email!;
 
   var now = DateFormat('yyyy / MM').format(DateTime.now());
-
-  List<String> _frozenfood = ['양파', '마늘', '대파', '피망'];
-  List<String> _meat = ['돼지고기', '소고기', '양고기'];
 
   @override
   Widget build(BuildContext context) {
