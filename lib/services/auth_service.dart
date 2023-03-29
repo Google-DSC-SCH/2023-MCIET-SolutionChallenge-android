@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,6 +21,7 @@ class AuthService {
       },
     );
   }
+
   // 2. signInWithGoogle()
   signInWithGoogle() async {
     final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
@@ -30,8 +33,36 @@ class AuthService {
       idToken: gAuth.idToken,
     );
     return await FirebaseAuth.instance.signInWithCredential(credential);
+
   }
-  // 3. signOut()
+
+  void sendData() async {
+    final url = Uri.parse('3.39.32.28:8080/user/signIn');
+
+    final headers = {
+      'Content-Type' : 'application/json'
+    };
+
+    final body = jsonEncode({
+      'name' : FirebaseAuth.instance.currentUser!.displayName!.toString(),
+      'email' : FirebaseAuth.instance.currentUser!.email!.toString(),
+    });
+
+    http.Response response = await http.post(
+        url,
+        headers: headers,
+        body: body
+    );
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      print(data);
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
+    // 3. signOut()
   signOut() {
     FirebaseAuth.instance.signOut();
   }

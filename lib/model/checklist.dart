@@ -1,4 +1,4 @@
-class Food {
+/*class Food {
   final String name;
   final DateTime expirationDate;
 
@@ -30,3 +30,4 @@ List<Food> getExpiringFoods(List<Map<dynamic, dynamic>> foodList) {
 
   return expiringFoods;
 }
+ */

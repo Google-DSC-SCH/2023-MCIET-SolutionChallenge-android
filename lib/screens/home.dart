@@ -57,7 +57,8 @@ class _homePageState extends State<homePage> {
             label: 'HOME'),
         BottomNavigationBarItem(
             icon: Icon(Icons.mode),
-            label: 'MEMO'),
+            label: 'MEMO',
+        ),
       ],
     );
   }

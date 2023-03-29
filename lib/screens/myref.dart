@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -5,6 +7,7 @@ import 'package:solution_challenge_mciet/components/divider.dart';
 import 'package:solution_challenge_mciet/components/myaccountinfo.dart';
 import 'package:solution_challenge_mciet/model/drawer.dart';
 import 'dart:core';
+import 'package:http/http.dart' as http;
 import 'package:solution_challenge_mciet/components/mycatecory.dart';
 import 'package:solution_challenge_mciet/screens/additem.dart';
 import 'package:camera/camera.dart';
@@ -35,9 +38,12 @@ class _myrefPageState extends State<myrefPage> {
           actions: [
             IconButton(
                 onPressed: () {
+                  showuserData();
                   showDialog(
                       context: context,
                       builder: (context) {
+                        print(accountEmail);
+                        print(accountName);
                         return myAccountInfo(accountName: accountName, accountEmail: accountEmail);
                       });
                 },
@@ -112,15 +118,15 @@ class _myrefPageState extends State<myrefPage> {
                     ),
                     MyIngredient(
                       ingredient: "Beef",
-                      expirationdate: "2023-03-29",
+                      expirationdate: "2023-03-31",
                     ),
                     MyIngredient(
                       ingredient: "Lamb",
-                      expirationdate: "2023-04-01",
+                      expirationdate: "2023-04-02",
                     ),
                     MyIngredient(
-                      ingredient: "Chicken meat",
-                      expirationdate: "2023-04-03",
+                      ingredient: "Chicken Meat",
+                      expirationdate: "2023-03-31",
                     ),
                   ],
                 ),
@@ -132,20 +138,12 @@ class _myrefPageState extends State<myrefPage> {
                 child: Row(
                   children: [
                     MyIngredient(
-                      ingredient: "Pork",
-                      expirationdate: "2023-04-02",
+                      ingredient: "Icecream",
+                      expirationdate: "2023-05-02",
                     ),
                     MyIngredient(
-                      ingredient: "Beef",
-                      expirationdate: "2023-03-29",
-                    ),
-                    MyIngredient(
-                      ingredient: "Lamb",
-                      expirationdate: "2023-04-01",
-                    ),
-                    MyIngredient(
-                      ingredient: "Chicken meat",
-                      expirationdate: "2023-04-03",
+                      ingredient: "Pizza",
+                      expirationdate: "2023-04-17",
                     ),
                   ],
                 ),
@@ -157,20 +155,20 @@ class _myrefPageState extends State<myrefPage> {
                 child: Row(
                   children: [
                     MyIngredient(
-                      ingredient: "Pork",
-                      expirationdate: "2023-04-02",
+                      ingredient: "Ketchup",
+                      expirationdate: "2025-05-21",
                     ),
                     MyIngredient(
-                      ingredient: "Beef",
-                      expirationdate: "2023-03-29",
+                      ingredient: "Hot Sauce",
+                      expirationdate: "2026-02-27",
                     ),
                     MyIngredient(
-                      ingredient: "Lamb",
+                      ingredient: "Tomato Sauce",
+                      expirationdate: "2024-09-16",
+                    ),
+                    MyIngredient(
+                      ingredient: "Mayonnaise",
                       expirationdate: "2023-04-01",
-                    ),
-                    MyIngredient(
-                      ingredient: "Chicken meat",
-                      expirationdate: "2023-04-03",
                     ),
                   ],
                 ),
@@ -182,20 +180,23 @@ class _myrefPageState extends State<myrefPage> {
                 child: Row(
                   children: [
                     MyIngredient(
-                      ingredient: "Pork",
-                      expirationdate: "2023-04-02",
+                      ingredient: "Onion",
+                      expirationdate: "2023-04-11",
                     ),
                     MyIngredient(
-                      ingredient: "Beef",
-                      expirationdate: "2023-03-29",
+                      ingredient: "Strawberry",
+                      expirationdate: "2023-03-31",
                     ),
                     MyIngredient(
-                      ingredient: "Lamb",
-                      expirationdate: "2023-04-01",
+                      ingredient: "Broccoli",
+                      expirationdate: "2023-04-08",
                     ),
                     MyIngredient(
-                      ingredient: "Chicken meat",
-                      expirationdate: "2023-04-03",
+                      ingredient: "Carrot",
+                      expirationdate: "2023-04-12",
+                    ),MyIngredient(
+                      ingredient: "Spinach",
+                      expirationdate: "2023-04-13",
                     ),
                   ],
                 ),
@@ -207,20 +208,12 @@ class _myrefPageState extends State<myrefPage> {
                 child: Row(
                   children: [
                     MyIngredient(
-                      ingredient: "Pork",
-                      expirationdate: "2023-04-02",
+                      ingredient: "Black Coffee",
+                      expirationdate: "2023-03-31",
                     ),
                     MyIngredient(
-                      ingredient: "Beef",
-                      expirationdate: "2023-03-29",
-                    ),
-                    MyIngredient(
-                      ingredient: "Lamb",
-                      expirationdate: "2023-04-01",
-                    ),
-                    MyIngredient(
-                      ingredient: "Chicken meat",
-                      expirationdate: "2023-04-03",
+                      ingredient: "Orange Juice",
+                      expirationdate: "2023-04-06",
                     ),
                   ],
                 ),
@@ -232,20 +225,8 @@ class _myrefPageState extends State<myrefPage> {
                 child: Row(
                   children: [
                     MyIngredient(
-                      ingredient: "Pork",
-                      expirationdate: "2023-04-02",
-                    ),
-                    MyIngredient(
-                      ingredient: "Beef",
-                      expirationdate: "2023-03-29",
-                    ),
-                    MyIngredient(
-                      ingredient: "Lamb",
-                      expirationdate: "2023-04-01",
-                    ),
-                    MyIngredient(
-                      ingredient: "Chicken meat",
-                      expirationdate: "2023-04-03",
+                      ingredient: "Kimchi",
+                      expirationdate: "2025-01-01",
                     ),
                   ],
                 ),
@@ -256,6 +237,29 @@ class _myrefPageState extends State<myrefPage> {
         drawer: mydrawer(accountName: accountName, accountEmail: accountEmail),
       ),
     );
+  }
+  Future<String?> showuserData() async {
+    final url = Uri.parse('http://3.39.32.28:8080/user/show');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW5nSW5AZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3OTgyMzg0NSwiZXhwIjoxNjc5ODQ1NDQ1fQ.MfpZTSQ-x4JLik25pdfLBbv73mozZPIZefVM3lY9FII'
+    };
+
+
+    http.Response response = await http.get(
+      url,
+      headers: headers,
+
+    );
+    print(response.statusCode);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      print("성공");
+      print(response.body);
+    }
+    else {
+      print("실패");
+    }
   }
 }
 

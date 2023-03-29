@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 
 class memoPage extends StatefulWidget {
@@ -13,7 +16,9 @@ class _memoPageState extends State<memoPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -24,6 +29,7 @@ class _memoPageState extends State<memoPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xff3b6fa5),
         onPressed: () {
+          listmemoData();
           showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -44,6 +50,7 @@ class _memoPageState extends State<memoPage> {
                             setState(() {
                               memos.add(input);
                             });
+                            sendmemoData();
                             Navigator.of(context).pop();
                           },
                           child: Text('Add')),
@@ -100,24 +107,25 @@ class _memoPageState extends State<memoPage> {
               padding: EdgeInsets.all(5),
               child: ListView.builder(
                   itemCount: memos.length,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (BuildContext context, int i) {
                     return Dismissible(
-                        key: Key(memos[index]),
+                        key: Key(memos[i]),
                         child: Card(
                           elevation: 4,
                           margin: EdgeInsets.all(8),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           child: ListTile(
-                            title: Text(memos[index]),
+                            title: Text(memos[i]),
                             trailing: IconButton(
                               icon: Icon(
                                 Icons.delete,
                                 color: Colors.red,
                               ),
                               onPressed: () {
+                                deletememoData();
                                 setState(() {
-                                  memos.removeAt(index);
+                                  memos.removeAt(i);
                                 });
                               },
                             ),
@@ -129,5 +137,90 @@ class _memoPageState extends State<memoPage> {
         ],
       ),
     );
+  }
+
+  Future<String> sendmemoData() async {
+    final url = Uri.parse('http://3.39.32.28:8080/memo/save');
+    print('hi');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW5nSW5AZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3OTgyMzg0NSwiZXhwIjoxNjc5ODQ1NDQ1fQ.MfpZTSQ-x4JLik25pdfLBbv73mozZPIZefVM3lY9FII'
+    };
+
+    final body = jsonEncode({
+      "contents": input
+    });
+
+    http.Response response = await http.post(
+        url,
+        headers: headers,
+        body: body
+    );
+    print(response.statusCode);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      print("성공");
+      print(response.body);
+    }
+    else {
+      print("실패");
+    }
+
+    return response.body;
+  }
+
+  Future<String> deletememoData() async {
+    final url = Uri.parse('http://3.39.32.28:8080/memo/10');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW5nSW5AZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3OTgyMzg0NSwiZXhwIjoxNjc5ODQ1NDQ1fQ.MfpZTSQ-x4JLik25pdfLBbv73mozZPIZefVM3lY9FII'
+    };
+
+    http.Response response = await http.delete(
+      url,
+      headers: headers,
+    );
+
+    print(response.statusCode);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      print("성공");
+      print(response.body);
+    }
+    else {
+      print("실패");
+    }
+
+    return response.body;
+  }
+  Future<String> listmemoData() async {
+    final url = Uri.parse('http://3.39.32.28:8080/memo/list');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW5nSW5AZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3OTgyMzg0NSwiZXhwIjoxNjc5ODQ1NDQ1fQ.MfpZTSQ-x4JLik25pdfLBbv73mozZPIZefVM3lY9FII'
+    };
+
+    http.Response response = await http.get(
+      url,
+      headers: headers,
+    );
+
+    print(response.statusCode);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      print("성공");
+
+      for(int i = 0; i<jsonDecode(response.body)['data'].length; i++) {
+        var mymemo = jsonDecode(response.body)['data'][i]['contents'];
+        print(mymemo);
+      }
+
+      // print(response.body);
+    }
+    else {
+      print("실패");
+    }
+
+    return response.body;
   }
 }

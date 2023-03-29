@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solution_challenge_mciet/screens/additem.dart';
+import 'package:solution_challenge_mciet/screens/recogcamera.dart';
 
 class MyIngredient extends StatelessWidget {
   const MyIngredient({
@@ -93,7 +94,7 @@ class CategoryWithAddBtn extends StatelessWidget {
           ElevatedButton.icon(
             onPressed: () async {
               await availableCameras().then((value) => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => AddItem(cameras: value))));
+                  MaterialPageRoute(builder: (_) => TextRecog())));
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: Color(c_color),

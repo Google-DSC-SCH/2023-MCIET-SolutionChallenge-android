@@ -9,7 +9,6 @@ class CheckPage extends StatefulWidget {
 }
 
 class _CheckPageState extends State<CheckPage> {
-  final List<Food> expiringFoods = getExpiringFoods(foodList);
 
   @override
   Widget build(BuildContext context) {
@@ -94,12 +93,10 @@ class _CheckPageState extends State<CheckPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  onedayitemlist(onedayitem: 'Fork',category: 'MEAT'),
-                  onedayitemlist(onedayitem: 'Icecream',category: 'FROZEN FOOD'),
-                  onedayitemlist(onedayitem: 'Icecream',category: 'FROZEN FOOD'),
-                  onedayitemlist(onedayitem: 'Icecream',category: 'FROZEN FOOD'),
-                  onedayitemlist(onedayitem: 'Icecream',category: 'FROZEN FOOD'),
-                  onedayitemlist(onedayitem: 'Icecream',category: 'FROZEN FOOD'),
+                  onedayitemlist(onedayitem: 'Chiken meat',category: 'MEAT'),
+                  onedayitemlist(onedayitem: 'Beef',category: 'MEAT'),
+                  onedayitemlist(onedayitem: 'Strawberry',category: 'VEGETABLE & FRUITS'),
+                  onedayitemlist(onedayitem: 'Black Coffee',category: 'BEVERAGE'),
                 ],
               ),
             )

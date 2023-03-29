@@ -16,6 +16,7 @@ class AddInfo extends StatefulWidget {
 }
 
 class _AddInfoState extends State<AddInfo> {
+  TextEditingController _itemname = TextEditingController();
   TextEditingController _expirationdate = TextEditingController();
   TextEditingController _opendate = TextEditingController();
 
@@ -24,7 +25,7 @@ class _AddInfoState extends State<AddInfo> {
     'MEAT',
     'VEGETABLE AND FRUIT',
     'SAUCE',
-    'BEVERGE',
+    'BEVERAGE',
     'ETC'
   ];
 
@@ -50,6 +51,7 @@ class _AddInfoState extends State<AddInfo> {
                 child: Stack(
                   children: [
                     Container(
+                      child: Image.asset(''),
                       width: 130,
                       height: 130,
                       decoration: BoxDecoration(
@@ -72,6 +74,14 @@ class _AddInfoState extends State<AddInfo> {
                 child: Center(
                   child: Column(
                     children: [
+                      TextField(
+                        controller: _itemname,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.edit),
+                          labelText: 'Ingredients Name'
+                        ),
+                      ),
+                      SizedBox(height: 30),
                       TextField(
                         controller: _expirationdate,
                         decoration: const InputDecoration(
@@ -114,7 +124,7 @@ class _AddInfoState extends State<AddInfo> {
                         },
                       ),
                       SizedBox(
-                        height: 70,
+                        height: 40,
                       ),
                       SizedBox(
                         width: 280,
@@ -142,7 +152,7 @@ class _AddInfoState extends State<AddInfo> {
                           }).toList(),
                         ),
                       ),
-                      SizedBox(height: 70),
+                      SizedBox(height: 40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

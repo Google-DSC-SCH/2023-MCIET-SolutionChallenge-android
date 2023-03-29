@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:solution_challenge_mciet/screens/home.dart';
+import 'package:http/http.dart' as http;
 
 class ItemDetails extends StatefulWidget {
   const ItemDetails({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class ItemDetails extends StatefulWidget {
 
 class _ItemDetailsState extends State<ItemDetails> {
 
+  TextEditingController _itemname = TextEditingController();
   TextEditingController _expirationdate = TextEditingController();
   TextEditingController _opendate = TextEditingController();
 
@@ -20,11 +24,11 @@ class _ItemDetailsState extends State<ItemDetails> {
     'MEAT',
     'VEGETABLE AND FRUIT',
     'SAUCE',
-    'BEVERGE',
+    'BEVERAGE',
     'ETC'
   ];
 
-  String? selectedcategory = 'FROZEN FOOD';
+  String? selectedcategory = 'BEVERAGE';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +40,7 @@ class _ItemDetailsState extends State<ItemDetails> {
           PopupMenuButton<Text>(itemBuilder: (context) {
             return [PopupMenuItem(
                 onTap: () {
+                  deleteitemData();
                   Navigator.pop(context);
                 },
                 child: Text('Delete')
@@ -56,6 +61,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                 child: Stack(
                   children: [
                     Container(
+                      child: Image.asset(''),
                       width: 130,
                       height: 130,
                       decoration: BoxDecoration(
@@ -78,6 +84,15 @@ class _ItemDetailsState extends State<ItemDetails> {
                 child: Center(
                   child: Column(
                     children: [
+                      TextField(
+
+                        controller: _itemname,
+                        decoration: const InputDecoration(
+                            icon: Icon(Icons.edit),
+                            labelText: 'Ingredients Name'
+                        ),
+                      ),
+                      SizedBox(height: 30),
                       TextField(
                         controller: _expirationdate,
                         decoration: const InputDecoration(
@@ -120,7 +135,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                         },
                       ),
                       SizedBox(
-                        height: 70,
+                        height: 40,
                       ),
                       SizedBox(
                         width: 280,
@@ -148,13 +163,13 @@ class _ItemDetailsState extends State<ItemDetails> {
                           }).toList(),
                         ),
                       ),
-                      SizedBox(height: 70),
+                      SizedBox(height: 40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           OutlinedButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Get.offAll(() => homePage());
                             },
                             child: Text(
                               'CANCEL',
@@ -197,5 +212,29 @@ class _ItemDetailsState extends State<ItemDetails> {
         ),
       ),
     );
+  }
+  Future<String> deleteitemData() async {
+    final url = Uri.parse('http://3.39.32.28:8080/item/4');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW5nSW5AZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3OTgyNjEwOSwiZXhwIjoxNjc5ODQ3NzA5fQ.Fd53TWBm9ia95mn6aPAQmmRkRUvcATyRO5qYpt12OVg'
+    };
+
+    http.Response response = await http.delete(
+      url,
+      headers: headers,
+    );
+
+    print(response.statusCode);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      print("성공");
+      print(response.body);
+    }
+    else {
+      print("실패");
+    }
+
+    return response.body;
   }
 }
